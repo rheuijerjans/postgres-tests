@@ -1,0 +1,42 @@
+One column
+
+
+---------------------------------------------
+ns         %     Task name
+---------------------------------------------
+11013020400  021%  run-0
+10455415900  020%  run-1
+10854167100  021%  run-2
+10345115200  020%  run-3
+10166372300  019%  run-4
+
+
+select * from one_column where one = $1,501180,18784.423000000457
+
+
+Two column
+
+---------------------------------------------
+ns         %     Task name
+---------------------------------------------
+11071195900  020%  run-0
+11006377000  020%  run-1
+10604285600  019%  run-2
+10969835400  020%  run-3
+10847300699  020%  run-4
+
+
+query                                                           calls           total_time              mean_time
+"INSERT INTO one_column (one, perc) VALUES ($1, $2)",           10000000,     443470.3684003913     0.04434703684000243
+"INSERT INTO two_column (one, two, perc) VALUES ($1, $2, $3)",  10000000,     734064.6286006875     0.07340646286000652
+select * from one_column where one = $1,                        501180,        18784.423000000457   0.037480392274232936
+select * from two_column where one = $1 and two = $2,           497425,        20014.24390000153    0.04023570166356681
+
+
+size
+total,index,
+two,2330 MB,1288 MB
+one,1463 MB,733 MB
+
+total ration 1.59
+index ratio 1.75

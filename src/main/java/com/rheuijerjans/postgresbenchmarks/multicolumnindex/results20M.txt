@@ -1,0 +1,13 @@
+query                                                           calls           total_time              mean_time
+"INSERT INTO one_column (one, perc) VALUES ($1, $2)",           20000000,   1807577.5879978777,     0.09037887939999928
+"INSERT INTO two_column (one, two, perc) VALUES ($1, $2, $3)",  20000000,   2169256.6257974575,     0.10846283128998979
+select * from two_column where one = $1 and two = $2,           2004175,    121278.46249991859,     0.06051291054923263
+select * from one_column where one = $1,                        1999025,    74102.56360001669,      0.03706935310964078
+
+size
+total, index
+two, 4661 MB,2578 MB
+one, 2917 MB,1457 MB
+
+total ratio 1.60
+index ratio 1.76
